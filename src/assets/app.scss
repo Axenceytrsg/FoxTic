@@ -2,7 +2,7 @@
 @import "theme.scss";
 @import "multiselect.scss";
 @import "bootstrap-override.scss";  // Fichier de surcharge des variables Bootstrap
-@import "node_modules/bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
 @import "popper-fix.scss";  // Correction des problèmes de marge avec Popper.js
 @import "modal-fix.scss";  // Correction des problèmes d'interaction avec les modals
 
