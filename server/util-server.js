@@ -15,16 +15,11 @@ const { NtlmClient } = require("./modules/axios-ntlm/lib/ntlmClient.js");
 const { Settings } = require("./settings");
 const grpc = require("@grpc/grpc-js");
 const protojs = require("protobufjs");
-const radiusClient = require("node-radius-client");
+const radius = require("radius");
 const redis = require("redis");
 const oidc = require("openid-client");
 const tls = require("tls");
-
-const {
-    dictionaries: {
-        rfc2865: { file, attributes },
-    },
-} = require("node-radius-utils");
+const dgram = require("dgram");
 const dayjs = require("dayjs");
 
 // SASLOptions used in JSDoc
@@ -458,28 +453,63 @@ exports.radius = function (
     port = 1812,
     timeout = 2500,
 ) {
-    const client = new radiusClient({
-        host: hostname,
-        hostPort: port,
-        timeout: timeout,
-        retries: 1,
-        dictionaries: [ file ],
-    });
+    return new Promise((resolve, reject) => {
+        // Créer un paquet RADIUS Access-Request
+        const packet = {
+            code: "Access-Request",
+            identifier: 0,
+            attributes: [
+                [ "User-Name", username ],
+                [ "User-Password", password ],
+                [ "Calling-Station-Id", callingStationId ],
+                [ "Called-Station-Id", calledStationId ]
+            ]
+        };
 
-    return client.accessRequest({
-        secret: secret,
-        attributes: [
-            [ attributes.USER_NAME, username ],
-            [ attributes.USER_PASSWORD, password ],
-            [ attributes.CALLING_STATION_ID, callingStationId ],
-            [ attributes.CALLED_STATION_ID, calledStationId ],
-        ],
-    }).catch((error) => {
-        if (error.response?.code) {
-            throw Error(error.response.code);
-        } else {
-            throw Error(error.message);
-        }
+        // Encoder le paquet
+        const encoded = radius.encode(packet, secret);
+
+        // Créer un socket UDP
+        const client = dgram.createSocket("udp4");
+
+        // Définir un timeout
+        const timeoutId = setTimeout(() => {
+            client.close();
+            reject(new Error("Timeout de connexion au serveur RADIUS"));
+        }, timeout);
+        
+        // Gérer la réponse
+        client.on("message", (msg) => {
+            clearTimeout(timeoutId);
+            client.close();
+
+            try {
+                const response = radius.decode(msg, secret);
+                if (response.code === "Access-Accept") {
+                    resolve(response);
+                } else {
+                    reject(new Error(response.code || "Accès refusé"));
+                }
+            } catch (error) {
+                reject(new Error(error.message));
+            }
+        });
+        
+        // Gérer les erreurs
+        client.on("error", (err) => {
+            clearTimeout(timeoutId);
+            client.close();
+            reject(new Error(err.message));
+        });
+
+        // Envoyer la requête
+        client.send(encoded, 0, encoded.length, port, hostname, (err) => {
+            if (err) {
+                clearTimeout(timeoutId);
+                client.close();
+                reject(new Error(err.message));
+            }
+        });
     });
 };
 
