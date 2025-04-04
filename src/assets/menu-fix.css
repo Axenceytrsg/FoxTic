@@ -1,0 +1,5 @@
+/* CSS pour masquer l'option "Groupe" dans les menus déroulants */
+option[value="group"],
+optgroup option[value="group"] {
+    display: none !important;
+}

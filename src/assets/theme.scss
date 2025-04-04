@@ -1,0 +1,151 @@
+/* 
+ * Thème global pour FoxTic
+ * Ce fichier contient les styles communs utilisés dans toute l'application
+ */
+
+// Import des variables
+@import "vars.scss";
+
+/* Variables de style pour les cartes et conteneurs */
+$card-bg-light: #ffffff;
+$card-bg-dark: $dark-bg2;
+$card-padding: 20px;
+$card-padding-mobile: 16px;
+$card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+$card-border-light: 1px solid rgba(0, 0, 0, 0.05);
+$card-border-dark: 1px solid $dark-border-color;
+
+/* Variables pour les inputs */
+$input-bg-light: white;
+$input-bg-dark: rgba(0, 0, 0, 0.2);
+$input-border-light: #ced4da;
+$input-border-dark: $dark-border-color;
+$input-text-light: #212529;
+$input-text-dark: $dark-font-color;
+$input-focus-light: rgba($primary, 0.2);
+$input-focus-dark: rgba($primary, 0.3);
+
+/* Variables pour les boutons */
+$btn-accent-light: $primary;
+$btn-accent-dark: lighten($primary, 5%);
+$btn-text-light: white;
+$btn-text-dark: white;
+$btn-hover-light: darken($primary, 10%);
+$btn-hover-dark: darken($primary, 5%);
+
+/* Classes de style pour les cartes */
+.shadow-box {
+    border-radius: $border-radius;
+    box-shadow: $card-shadow;
+    background-color: $card-bg-light;
+    padding: $card-padding;
+    border: $card-border-light;
+
+    @media (max-width: 768px) {
+        padding: $card-padding-mobile;
+    }
+
+    &.big-padding {
+        padding: 40px;
+
+        @media (max-width: 768px) {
+            padding: 20px;
+        }
+    }
+}
+
+/* Classes de style pour les formulaires */
+.form-control, .form-select {
+    background-color: $input-bg-light;
+    border-color: $input-border-light;
+    color: $input-text-light;
+
+    &:focus {
+        box-shadow: 0 0 0 0.2rem $input-focus-light;
+        border-color: $primary;
+    }
+}
+
+.input-group-text {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: $input-border-light;
+}
+
+/* Classes de style pour les boutons */
+.btn-primary {
+    background-color: $btn-accent-light;
+    border-color: $btn-accent-light;
+    color: $btn-text-light;
+
+    &:hover {
+        background-color: $btn-hover-light;
+        border-color: $btn-hover-light;
+    }
+}
+
+/* Styles du thème dark */
+.dark {
+    .shadow-box {
+        background-color: $card-bg-dark;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+        border: $card-border-dark;
+    }
+
+    .form-control, .form-select {
+        background-color: $input-bg-dark;
+        border-color: $input-border-dark;
+        color: $input-text-dark;
+
+        &:focus {
+            box-shadow: 0 0 0 0.2rem $input-focus-dark;
+            border-color: lighten($primary, 10%);
+        }
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+    }
+
+    .input-group-text {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-color: $input-border-dark;
+        color: $dark-font-color;
+    }
+
+    .btn-primary {
+        background-color: $btn-accent-dark;
+        border-color: $btn-accent-dark;
+        color: $btn-text-dark;
+
+        &:hover {
+            background-color: $btn-hover-dark;
+            border-color: $btn-hover-dark;
+        }
+    }
+
+    .table {
+        color: $dark-font-color;
+        
+        thead {
+            th {
+                color: $dark-font-color;
+                border-color: $dark-border-color;
+            }
+        }
+        
+        td {
+            border-color: $dark-border-color;
+        }
+    }
+    
+    /* Mise en forme des cartes en mode sombre */
+    .card {
+        background-color: $dark-bg2;
+        border-color: $dark-border-color;
+        
+        .card-header, .card-footer {
+            background-color: $dark-bg3;
+            border-color: $dark-border-color;
+        }
+    }
+}

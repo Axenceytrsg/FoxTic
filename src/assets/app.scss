@@ -1,0 +1,741 @@
+@import "vars.scss";
+@import "theme.scss";
+@import "multiselect.scss";
+@import "bootstrap-override.scss";  // Fichier de surcharge des variables Bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "popper-fix.scss";  // Correction des problèmes de marge avec Popper.js
+@import "modal-fix.scss";  // Correction des problèmes d'interaction avec les modals
+
+// Styles de base pour l'application
+#app {
+    font-family: BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, noto sans, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol, noto color emoji;
+}
+
+// Définition de la typographie
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+a {
+    text-decoration: none;
+    color: $primary;
+    
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+// Scrollbar personnalisée
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba($primary, 0.6);
+    border-radius: 10px;
+    
+    &:hover {
+        background: rgba($primary, 0.8);
+    }
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+// Styles spécifiques pour le mode sombre
+.dark {
+    body, #app {
+        background-color: $dark-bg;
+        color: $dark-font-color;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: rgba($primary, 0.4);
+        
+        &:hover {
+            background: rgba($primary, 0.6);
+        }
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.3);
+    }
+    
+    a {
+        color: lighten($primary, 15%);
+        
+        &:hover {
+            color: lighten($primary, 25%);
+        }
+    }
+    
+    // Optgroup et options
+    optgroup {
+        color: lighten($primary, 10%);
+        
+        option {
+            color: $dark-font-color;
+        }
+    }
+    
+    // Styles pour les listes
+    .list-group {
+        .list-group-item {
+            background-color: $dark-bg2;
+            color: $dark-font-color;
+            border-color: $dark-border-color;
+        }
+    }
+    
+    // Styles pour les modales
+    .modal {
+        backdrop-filter: blur(5px);
+        
+        .modal-content {
+            background-color: $dark-bg2;
+            border-color: $dark-border-color;
+            
+            .modal-header, .modal-footer {
+                border-color: $dark-border-color;
+            }
+        }
+    }
+    
+    // Styles pour les badges
+    .badge {
+        &.bg-secondary {
+            background-color: $dark-bg3 !important;
+        }
+    }
+    
+    // Styles pour les alertes
+    .alert {
+        background-color: $dark-bg2;
+        border-color: $dark-border-color;
+        color: $dark-font-color;
+        
+        &.alert-danger {
+            background-color: rgba(231, 76, 60, 0.15);
+            border-color: rgba(231, 76, 60, 0.3);
+        }
+        
+        &.alert-warning {
+            background-color: rgba(243, 156, 18, 0.15);
+            border-color: rgba(243, 156, 18, 0.3);
+        }
+        
+        &.alert-success {
+            background-color: rgba(46, 204, 113, 0.15);
+            border-color: rgba(46, 204, 113, 0.3);
+        }
+        
+        &.alert-info {
+            background-color: rgba(52, 152, 219, 0.15);
+            border-color: rgba(52, 152, 219, 0.3);
+        }
+    }
+}
+
+// Styles pour les options et optgroups en mode clair
+optgroup {
+    color: $primary;
+    
+    option {
+        color: #333;
+    }
+}
+
+textarea.form-control {
+    border-radius: 19px;
+}
+
+.bg-dark {
+    color: white;
+}
+
+.incident a {
+    color: inherit;
+}
+
+.list-group {
+    border-radius: 0.75rem;
+
+    .dark & {
+        .list-group-item {
+            background-color: $dark-bg;
+            color: $dark-font-color;
+            border-color: $dark-border-color;
+        }
+    }
+}
+
+.VuePagination__count {
+    font-size: 13px;
+    text-align: center;
+}
+
+.shadow-box {
+    //overflow: hidden;   // Forget why add this, but multiple select hide by this
+    box-shadow: 0 15px 70px rgba(3, 47, 48, 0.15);
+    padding: 10px;
+    border-radius: 10px;
+
+    &.big-padding {
+        padding: 20px;
+    }
+}
+
+.btn {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.btn-sm {
+    border-radius: 25px;
+}
+
+.btn-primary {
+    color: white;
+
+    &:hover, &:active, &:focus, &.active {
+        color: white;
+        background-color: darken($primary, 10%);
+        border-color: darken($primary, 10%);
+    }
+
+    .dark & {
+        color: $dark-font-color2;
+    }
+}
+
+.btn-normal {
+    $bg-color: #F5F5F5;
+
+    background-color: $bg-color;
+    border-color: $bg-color;
+
+    &:hover {
+        $hover-color: darken($bg-color, 3%);
+        background-color: $hover-color;
+        border-color: $hover-color;
+    }
+}
+
+.btn-warning {
+    color: white;
+
+    &:hover, &:active, &:focus, &.active {
+        color: white;
+    }
+}
+
+.btn-info {
+    color: white;
+
+    &:hover, &:active, &:focus, &.active {
+        color: white;
+    }
+}
+
+.btn-dark {
+    background-color: #161B22;
+}
+
+.btn-outline-normal {
+    padding: 4px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 25px;
+    background-color: transparent;
+
+    .dark & {
+        color: $dark-font-color;
+        border: 1px solid $dark-font-color2;
+    }
+
+    &.active {
+        background-color: rgba($primary, 0.1);
+
+        .dark & {
+            background-color: $dark-font-color2;
+        }
+    }
+}
+
+@media (max-width: 550px) {
+    .table-shadow-box {
+        padding: 10px !important;
+
+        thead {
+            display: none;
+        }
+
+        tbody {
+            .shadow-box {
+                background-color: white;
+            }
+        }
+
+        tr {
+            margin-top: 0 !important;
+            padding: 4px 10px !important;
+            display: block;
+            margin-bottom: 6px;
+
+            td:first-child {
+                font-weight: bold;
+            }
+
+            td:nth-child(-n+3) {
+                text-align: center;
+            }
+
+            td:last-child {
+                text-align: left;
+            }
+
+            td {
+                border-bottom: 1px solid $dark-font-color;
+                display: block;
+                padding: 4px;
+
+                .badge {
+                    margin: auto;
+                    display: block;
+                    width: 30%;
+                }
+            }
+        }
+    }
+}
+
+// Dark Theme override here
+.dark {
+    background-color: #090c10;
+    color: $dark-font-color;
+
+    mark, .mark {
+        background-color: #b6ad86;
+    }
+
+    &::-webkit-scrollbar-thumb, ::-webkit-scrollbar-thumb {
+        background: $dark-border-color;
+    }
+
+    .shadow-box {
+        &:not(.alert) {
+            background-color: $dark-bg;
+        }
+    }
+
+    .form-check-input {
+        background-color: $dark-bg2;
+        border-color: $dark-border-color;
+    }
+
+    .input-group-text {
+        background-color: #282f39;
+        border-color: $dark-border-color;
+        color: $dark-font-color;
+    }
+
+    .form-check-input:checked {
+        border-color: $primary; // Re-apply bootstrap border
+    }
+
+    .form-switch .form-check-input {
+        background-color: #232f3b;
+    }
+
+    a:not(.btn),
+    .table,
+    .nav-link {
+        color: $dark-font-color;
+
+        &.btn-info {
+            color: white;
+        }
+    }
+
+    .incident a {
+        color: inherit;
+    }
+
+    .form-control,
+    .form-control:focus,
+    .form-select,
+    .form-select:focus {
+        color: $dark-font-color;
+        background-color: $dark-bg2;
+    }
+
+    .form-select:disabled {
+        color: rgba($dark-font-color, 0.7);
+        background-color: $dark-bg;
+    }
+
+    .form-control, .form-select {
+        border-color: $dark-border-color;
+    }
+
+    .form-control:disabled, .form-control[readonly] {
+        background-color: #232f3b;
+        opacity: 1;
+    }
+
+    .table-hover > tbody > tr:hover > * {
+        --bs-table-accent-bg: #070a10;
+        color: $dark-font-color;
+    }
+
+    .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+        color: $dark-font-color2;
+    }
+
+    .bg-primary {
+        color: $dark-font-color2;
+    }
+
+    .btn-secondary {
+        color: white;
+    }
+
+    .btn-normal {
+        $bg-color: $dark-header-bg;
+
+        color: $dark-font-color;
+        background-color: $bg-color;
+        border-color: $bg-color;
+
+        &:hover {
+            $hover-color: darken($bg-color, 3%);
+            background-color: $hover-color;
+            border-color: $hover-color;
+        }
+    }
+
+    .btn-warning {
+        color: $dark-font-color2;
+
+        &:hover, &:active, &:focus, &.active {
+            color: $dark-font-color2;
+        }
+    }
+
+    .btn-close {
+        box-shadow: none;
+        filter: invert(1);
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+
+    .modal-header {
+        border-color: $dark-bg;
+    }
+
+    .modal-footer {
+        border-color: $dark-bg;
+    }
+
+    // Pagination
+    .page-item.disabled .page-link {
+        background-color: $dark-bg;
+        border-color: $dark-border-color;
+    }
+
+    .page-link {
+        background-color: $dark-bg;
+        border-color: $dark-border-color;
+        color: $dark-font-color;
+    }
+
+    .monitor-list {
+        .item {
+            &:hover {
+                background-color: $dark-bg2;
+            }
+
+            &.active {
+                background-color: $dark-bg2;
+            }
+        }
+    }
+
+    @media (max-width: 550px) {
+        .table-shadow-box {
+            tbody {
+                .shadow-box {
+                    background-color: $dark-bg2;
+
+                    td {
+                        border-bottom: 1px solid $dark-border-color;
+                    }
+                }
+            }
+        }
+    }
+
+    .alert {
+        &.bg-info,
+        &.bg-warning,
+        &.bg-danger,
+        &.bg-maintenance,
+        &.bg-light {
+            color: $dark-font-color2;
+        }
+    }
+
+}
+
+/*
+ * Transitions
+ */
+
+// page-change
+.slide-fade-enter-active {
+    transition: all 0.2s $easing-in;
+}
+
+.slide-fade-leave-active {
+    transition: all 0.2s $easing-in;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+    transform: translateY(50px);
+    opacity: 0;
+}
+
+.slide-fade-right-enter-active {
+    transition: all 0.2s $easing-in;
+}
+
+.slide-fade-right-leave-active {
+    transition: all 0.2s $easing-in;
+}
+
+.slide-fade-right-enter-from,
+.slide-fade-right-leave-to {
+    transform: translateX(50px);
+    opacity: 0;
+}
+
+.slide-fade-up-enter-active {
+    transition: all 0.2s $easing-in;
+}
+
+.slide-fade-up-leave-active {
+    transition: all 0.2s $easing-in;
+}
+
+.slide-fade-up-enter-from,
+.slide-fade-up-leave-to {
+    transform: translateY(-50px);
+    opacity: 0;
+}
+
+.monitor-list {
+    &.scrollbar {
+        overflow-y: auto;
+    }
+
+    @media (max-width: 770px) {
+        &.scrollbar {
+            height: calc(100% - 97px);
+        }
+    }
+
+    .item {
+        display: block;
+        text-decoration: none;
+        padding: 13px 15px 10px 15px;
+        border-radius: 10px;
+        transition: all ease-in-out 0.15s;
+
+        &.disabled {
+            opacity: 0.3;
+        }
+
+        .info {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05); // Remplace $highlight-white par une valeur cohérente
+        }
+
+        &.active {
+            background-color: rgba($primary, 0.1);
+        }
+        .tags {
+            // Removes margin to line up tags list with uptime percentage
+            margin-left: -0.25rem;
+        }
+    }
+}
+
+.alert-success {
+    color: #122f21;
+    background-color: $primary;
+    border-color: $primary;
+}
+
+.alert-info {
+    color: #055160;
+    background-color: #cff4fc;
+    border-color: #cff4fc;
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f8d7da;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #4caf50;
+    border-color: #4caf50;
+}
+
+[contenteditable=true] {
+    transition: all $easing-in 0.2s;
+    background-color: rgba(239, 239, 239, 0.7);
+    border-radius: 8px;
+
+    &.no-bg {
+        background-color: transparent !important;
+    }
+
+    &:focus {
+        outline: 0 solid #eee;
+        background-color: rgba(245, 245, 245, 0.9);
+    }
+
+    &:hover {
+        background-color: rgba(239, 239, 239, 0.8);
+    }
+
+    .dark & {
+        background-color: rgba(239, 239, 239, 0.2);
+    }
+
+    /*
+    &::after {
+        margin-left: 5px;
+        content: "🖊️";
+        font-size: 13px;
+        color: #eee;
+    }
+    */
+
+}
+
+.action {
+    transition: all $easing-in 0.2s;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+}
+
+.vue-image-crop-upload .vicp-wrap {
+    border-radius: 10px !important;
+}
+
+.spinner {
+    color: $primary;
+}
+
+.prism-editor__textarea {
+    outline: none !important;
+}
+
+.prism-editor__container {
+    .important {
+        font-weight: var(--bs-body-font-weight) !important;
+    }
+}
+
+h5.settings-subheading::after {
+    content: "";
+    display: block;
+    width: 50%;
+    padding-top: 8px;
+    border-bottom: 1px solid $dark-border-color;
+}
+
+/* required class */
+.code-editor, .css-editor {
+    /* we dont use `language-` classes anymore so thats why we need to add background and text color manually */
+
+    border-radius: 1rem;
+    padding: 10px 5px;
+    border: 1px solid #ced4da;
+
+    .dark & {
+        background: $dark-bg2;
+        border: 1px solid $dark-border-color;
+    }
+}
+
+
+$shadow-box-padding: 20px;
+
+.shadow-box-with-fixed-bottom-bar {
+    padding-top: $shadow-box-padding;
+    padding-bottom: 0;
+    padding-right: $shadow-box-padding;
+    padding-left: $shadow-box-padding;
+    max-height: calc(85vh - 70px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.fixed-bottom-bar {
+    position: sticky;
+    bottom: 0;
+    margin-left: -$shadow-box-padding;
+    margin-right: -$shadow-box-padding;
+    z-index: 10;
+    background-color: rgba(white, 0.2);
+    backdrop-filter: blur(2px);
+    border-radius: 0 0 10px 10px;
+
+    .dark & {
+        background-color: rgba($dark-header-bg, 0.9);
+    }
+}
+
+@media (max-width: 770px) {
+    .toast-container {
+        margin-bottom: 100px !important;
+    }
+}
+
+@media (max-width: 550px) {
+    .toast-container {
+        margin-bottom: 126px !important;
+    }
+}
+
+.zoom-cursor {
+  cursor: zoom-in;
+}
+
+// Localization
+
+@import "localization.scss";

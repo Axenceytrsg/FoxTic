@@ -1,0 +1,40 @@
+// Variables principales - Thème professionnel dark
+// Couleurs de base
+$primary: #4e80ee;        // Bleu principal pour les éléments interactifs et boutons 
+$secondary: #6c757d;      // Gris neutre pour les éléments secondaires
+$danger: #e74c3c;         // Rouge pour les alertes et erreurs
+$warning: #f39c12;        // Orange pour les avertissements
+$success: #2ecc71;        // Vert pour les succès
+$info: #3498db;           // Bleu clair pour les informations
+
+// Couleurs de texte et bordures
+$light-text: #212529;     // Texte principal en mode clair
+$light-text-secondary: #6c757d; // Texte secondaire en mode clair
+$light-border: #dee2e6;   // Bordure en mode clair
+$secondary-text: #adb5bd;  // Texte grisé pour éléments désactivés
+$link-color: #4e80ee;      // Couleur des liens et icônes liées
+
+// Couleurs pour le mode sombre
+$dark-bg: #1a1d24;         // Arrière-plan principal en mode sombre
+$dark-bg2: #252830;        // Arrière-plan secondaire (pour les cartes)
+$dark-bg3: #32363f;        // Arrière-plan tertiaire (pour les en-têtes)
+$dark-header-bg: #111419;  // Arrière-plan pour les en-têtes
+$dark-font-color: #e4e6eb; // Couleur de texte principale en mode sombre
+$dark-font-color2: #ffffff; // Couleur de texte secondaire en mode sombre (pour les éléments en surbrillance)
+$dark-border-color: #3d4353; // Couleur des bordures en mode sombre
+
+// Variables d'espacement et de forme
+$border-radius: 0.75rem;  // Rayon des bordures pour les éléments arrondis
+$button-border-radius: 0.5rem; // Rayon des bordures pour les boutons
+$dropdown-border-radius: 0.75rem;  // Rayon des bordures pour les dropdowns
+$card-border-radius: 16px;  // Rayon des bordures pour les cartes
+
+// Variables pour interactions
+$hover-opacity: 0.9;      // Opacité au survol des éléments
+$focus-shadow: 0 0 0 0.25rem rgba($primary, 0.25); // Ombre pour les éléments focus
+
+// Variables pour animations
+$transition-speed: 0.3s;  // Vitesse de transition par défaut
+$transition-curve: ease;  // Courbe d'animation par défaut
+$easing-in: cubic-bezier(0.54, 0.78, 0.55, 0.97); // Animation d'entrée
+$easing-out: cubic-bezier(0.22, 0.68, 0.43, 1.05); // Animation de sortie

@@ -1,0 +1,38 @@
+// Corrections pour les problèmes d'interaction avec les modals
+// Ce fichier résout les problèmes de z-index et d'interaction avec les backdrops
+
+// Rendre le backdrop invisible et sans interaction
+.modal-backdrop {
+  z-index: -9999 !important; // Mettre complètement derrière tous les éléments
+  opacity: 0.5 !important; // Garder un peu d'opacité pour l'effet visuel
+  pointer-events: none !important; // Désactiver complètement les interactions avec le backdrop
+}
+
+// S'assurer que les modals et leur contenu sont au-dessus et interactifs
+.modal {
+  z-index: 1050 !important;
+  
+  .modal-dialog {
+    z-index: 1051 !important;
+    pointer-events: auto !important;
+    
+    .modal-content {
+      z-index: 1052 !important;
+      pointer-events: auto !important;
+      
+      // Tous les éléments interactifs dans le modal
+      input, button, select, textarea, 
+      .form-control, .form-check-input, 
+      .btn, a, [role="button"] {
+        z-index: 1053 !important;
+        pointer-events: auto !important;
+      }
+    }
+  }
+}
+
+// Empêcher le scrolling du body quand le modal est ouvert
+body.modal-open {
+  overflow: hidden;
+  padding-right: 0 !important; // Corriger le décalage parfois causé par Bootstrap
+}

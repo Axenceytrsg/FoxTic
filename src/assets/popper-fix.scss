@@ -1,0 +1,41 @@
+/**
+ * Correction pour les erreurs Popper.js
+ * Ce fichier supprime les styles de marge CSS qui causent des avertissements dans la console
+ * et les remplace par l'utilisation des modificateurs offset et padding de Popper.
+ */
+
+// Suppression des marges sur les menus déroulants
+.dropdown-menu {
+  // Supprimer toutes les marges qui causent des avertissements Popper
+  margin: 0 !important;
+  
+  // Utiliser les transformations au lieu des marges pour le positionnement
+  transform-origin: top center;
+  
+  // Assurer que le dropdown s'affiche correctement avec les transformations
+  &[data-bs-popper] {
+    margin: 0 !important;
+  }
+}
+
+// Ajustement des styles pour le positionnement des menus dropdown
+.dropdown, .dropend, .dropstart, .dropup {
+  position: relative;
+  
+  // Fixer la position des menus pour éviter les problèmes de marge
+  .dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+  }
+}
+
+// Supprimer les marges des tooltips qui peuvent aussi causer des avertissements
+.tooltip, .popover {
+  .tooltip-inner, .popover-body {
+    margin: 0 !important;
+  }
+  
+  &[data-bs-popper] {
+    margin: 0 !important;
+  }
+}

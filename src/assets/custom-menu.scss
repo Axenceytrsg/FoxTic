@@ -1,0 +1,51 @@
+/* Style personnalisé pour les menus déroulants */
+
+/* Cache l'option Groupe dans les menus */
+select option[value="group"], 
+optgroup option[value="group"] {
+    display: none !important;
+}
+
+/* Amélioration du style des menus déroulants */
+.form-select {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    appearance: auto;
+    transition: all 0.3s ease;
+}
+
+.form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    border-color: rgba(13, 110, 253, 0.5);
+}
+
+.form-select option {
+    padding: 10px;
+    border-radius: 0;
+}
+
+/* Séparateur visuel pour les groupes d'options */
+.form-select optgroup {
+    font-weight: 600;
+    margin-top: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 5px;
+}
+
+/* Style pour le mode sombre */
+.dark .form-select {
+    background-color: rgba(33, 37, 41, 0.8);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #f0f6fc;
+}
+
+.dark .form-select option {
+    background-color: #212529;
+    color: #f0f6fc;
+}
+
+.dark .form-select optgroup {
+    border-color: rgba(255, 255, 255, 0.1);
+}

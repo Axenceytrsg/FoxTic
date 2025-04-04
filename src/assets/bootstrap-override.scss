@@ -1,0 +1,96 @@
+// Fichier de surcharge des variables Bootstrap
+// Ce fichier sera importé avant le chargement de Bootstrap pour personnaliser les couleurs
+
+// Import des variables personnalisées
+@import "vars.scss";
+
+// Surcharge des variables Bootstrap avec notre palette de couleurs professionnelle
+$primary: $primary;
+$secondary: $secondary;
+$danger: $danger;
+$warning: $warning;
+$success: #2ecc71;        // Vert succès
+$info: #3498db;           // Bleu informationnel
+$dark: $dark-bg;          // Fond principal sombre
+$light: #f8f9fa;          // Couleur claire
+
+// Personnalisation des badges pour les statuts
+.badge {
+  // Statut Up
+  &.bg-primary {
+    background-color: $primary !important;
+    color: white !important;
+  }
+  
+  // Statut Down
+  &.bg-danger {
+    background-color: $danger !important;
+    color: white !important;
+  }
+  
+  // Statut Pending
+  &.bg-warning {
+    background-color: $warning !important;
+    color: white !important;
+  }
+  
+  // Statut Unknown
+  &.bg-secondary {
+    background-color: $secondary !important;
+    color: white !important;
+  }
+}
+
+// Personnalisation pour le mode sombre
+.dark {
+  // Ajustement des contrastes pour les badges en mode sombre
+  .badge {
+    &.bg-primary {
+      background-color: lighten($primary, 5%) !important;
+    }
+    
+    &.bg-secondary {
+      background-color: $dark-bg3 !important;
+    }
+  }
+  
+  // Ajustement des alertes en mode sombre
+  .alert {
+    background-color: $dark-bg2;
+    
+    &.alert-primary {
+      background-color: rgba($primary, 0.2);
+      border-color: rgba($primary, 0.3);
+      color: lighten($primary, 20%);
+    }
+    
+    &.alert-danger {
+      background-color: rgba($danger, 0.2);
+      border-color: rgba($danger, 0.3);
+      color: lighten($danger, 20%);
+    }
+    
+    &.alert-warning {
+      background-color: rgba($warning, 0.2);
+      border-color: rgba($warning, 0.3);
+      color: lighten($warning, 20%);
+    }
+    
+    &.alert-success {
+      background-color: rgba($success, 0.2);
+      border-color: rgba($success, 0.3);
+      color: lighten($success, 20%);
+    }
+    
+    &.alert-info {
+      background-color: rgba($info, 0.2);
+      border-color: rgba($info, 0.3);
+      color: lighten($info, 20%);
+    }
+  }
+  
+  // Meilleur contraste pour le texte en mode sombre
+  .text-muted {
+    color: rgba($dark-font-color, 0.7) !important;
+  }
+}
